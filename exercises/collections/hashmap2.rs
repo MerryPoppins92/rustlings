@@ -12,11 +12,9 @@
 // Execute the command `rustlings hint hashmap2` if you need
 // hints.
 
-// I AM NOT DONE
-
 use std::collections::HashMap;
 
-#[derive(Hash, PartialEq, Eq)]
+#[derive(Hash, PartialEq, Eq, Debug)]
 enum Fruit {
     Apple,
     Banana,
@@ -33,12 +31,18 @@ fn fruit_basket(basket: &mut HashMap<Fruit, u32>) {
         Fruit::Lychee,
         Fruit::Pineapple,
     ];
-
+    // let mut basket:std::collections::HashMap<Fruit, u32> = HashMap::new();
     for fruit in fruit_kinds {
         // TODO: Put new fruits if not already present. Note that you
         // are not allowed to put any type of fruit that's already
         // present!
+       if !basket.contains_key(&fruit){
+        basket.insert(fruit, 7);
+       }
+        
+
     }
+    // println!("{:?}", &basket);
 }
 
 #[cfg(test)]
@@ -67,7 +71,9 @@ mod tests {
     fn at_least_five_types_of_fruits() {
         let mut basket = get_fruit_basket();
         fruit_basket(&mut basket);
+        println!("{:?}", &basket);
         let count_fruit_kinds = basket.len();
+        println!("num fruit:{}", &count_fruit_kinds);
         assert!(count_fruit_kinds >= 5);
     }
 
